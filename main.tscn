@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cdup8uv36pcnv"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Suelo" type="TileMap" parent="."]
+format = 2
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Jugador"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+
+[node name="Objetos" type="Node2D" parent="."]
