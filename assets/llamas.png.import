@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dclh5opq3t6l4"
-path="res://.godot/imported/idle_juanen.png-0ea2a4c75780f32d5bc9ec377d9fede9.ctex"
+uid="uid://cmkc30nu4xafk"
+path="res://.godot/imported/llamas.png-477f81d75f8239635e6d0ffa69f03e11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/idle_juanen.png"
-dest_files=["res://.godot/imported/idle_juanen.png-0ea2a4c75780f32d5bc9ec377d9fede9.ctex"]
+source_file="res://assets/llamas.png"
+dest_files=["res://.godot/imported/llamas.png-477f81d75f8239635e6d0ffa69f03e11.ctex"]
 
 [params]
 
