@@ -16,15 +16,14 @@ func _physics_process(delta):
 
 	velocity.x = input_dir * SPEED
 
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_FORCE
-
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-	else:
-		velocity.y = 0
-
 	move_and_slide()
+
+	# TODO: Use proper jump dynamics
+	print(velocity.y)
+	if Input.is_action_just_pressed("ui_up") and velocity.y == 0:
+		velocity.y = JUMP_FORCE
+	
+	velocity.y += GRAVITY * delta
 
 	if anim:
 		if input_dir != 0:
