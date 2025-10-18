@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgylsuuitlfpw"
-path="res://.godot/imported/juanen_andar.png-c816140bea0831c3496ccbba3840ca1d.ctex"
+uid="uid://b2j6nnw3k8fu4"
+path="res://.godot/imported/fondo_hielo.png-0be32772c9e48ca01c09bdf0b55cf0c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/juanen_andar.png"
-dest_files=["res://.godot/imported/juanen_andar.png-c816140bea0831c3496ccbba3840ca1d.ctex"]
+source_file="res://assets/backgrounds/fondo_hielo.png"
+dest_files=["res://.godot/imported/fondo_hielo.png-0be32772c9e48ca01c09bdf0b55cf0c3.ctex"]
 
 [params]
 

@@ -1,84 +1,10 @@
-[gd_scene load_steps=31 format=4 uid="uid://cdup8uv36pcnv"]
+[gd_scene load_steps=22 format=4 uid="uid://cdup8uv36pcnv"]
 
-[ext_resource type="Script" uid="uid://bo4b3cokgmqbp" path="res://scripts/jugador.gd" id="1_c01mt"]
-[ext_resource type="Texture2D" uid="uid://bgylsuuitlfpw" path="res://assets/juanen_andar.png" id="2_nxtc6"]
-[ext_resource type="Texture2D" uid="uid://djdlmokgm7clg" path="res://assets/juanen_parado.png" id="3_jlsqs"]
 [ext_resource type="Texture2D" uid="uid://do5djlftrf51t" path="res://assets/suelo_hielo.png" id="4_q8u5g"]
 [ext_resource type="Texture2D" uid="uid://d207j1dd0htjk" path="res://assets/suelo_hierba.png" id="5_lhr70"]
+[ext_resource type="PackedScene" uid="uid://d0l8qgped5xr5" path="res://scenes/Jugador.tscn" id="5_vcsgt"]
 [ext_resource type="Texture2D" uid="uid://cmkc30nu4xafk" path="res://assets/llamas.png" id="6_wp0k4"]
 [ext_resource type="PackedScene" uid="uid://3q1ym1ps6hvn" path="res://scenes/Flame.tscn" id="7_nxtc6"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbgi4"]
-atlas = ExtResource("2_nxtc6")
-region = Rect2(0, 0, 30, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tefeu"]
-atlas = ExtResource("2_nxtc6")
-region = Rect2(30, 0, 30, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o6xl0"]
-atlas = ExtResource("2_nxtc6")
-region = Rect2(60, 0, 30, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
-atlas = ExtResource("2_nxtc6")
-region = Rect2(90, 0, 30, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
-atlas = ExtResource("3_jlsqs")
-region = Rect2(0, 0, 30, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ya4ey"]
-atlas = ExtResource("3_jlsqs")
-region = Rect2(30, 0, 30, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
-atlas = ExtResource("3_jlsqs")
-region = Rect2(60, 0, 30, 50)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
-atlas = ExtResource("3_jlsqs")
-region = Rect2(90, 0, 30, 50)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_272bh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tbgi4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tefeu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o6xl0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tipki")
-}],
-"loop": true,
-"name": &"Correr",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_choun")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ya4ey")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eb6dy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_trceg")
-}],
-"loop": true,
-"name": &"Parado",
-"speed": 3.75
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(43.25, 68)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 
@@ -199,23 +125,82 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SystemFont" id="SystemFont_vcsgt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c01mt"]
+font = SubResource("SystemFont_vcsgt")
+font_size = 32
+font_color = Color(0.99357647, 0.9957308, 0.99996656, 1)
+outline_color = Color(0, 0.043137256, 0.45882353, 1)
+shadow_size = 5
+shadow_color = Color(0.24313726, 0.24313726, 0.24313726, 0.7058824)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="GDScript" id="GDScript_vcsgt"]
+script/source = "extends CharacterBody2D
+
+const SPEED = 200
+const JUMP_FORCE = -400
+const GRAVITY = 1000
+
+@onready var anim = $AnimatedSprite2D
+@onready var pasos = $pasos_audio
+@onready var counter_label = get_tree().get_first_node_in_group(\"ui_counter\")
+
+var llamas = 0
+
+func _ready():
+	add_to_group(\"player\")  # This allows collectibles to recognize this as the player
+
+func _physics_process(delta):
+	var input_dir = 0
+
+	if Input.is_action_pressed(\"ui_right\"):
+		input_dir += 1
+	if Input.is_action_pressed(\"ui_left\"):
+		input_dir -= 1
+
+	velocity.x = input_dir * SPEED
+
+	if input_dir != 0:
+		if not pasos.playing:
+			pasos.play()
+	else:
+		if pasos.playing:
+			pasos.stop()
+
+	# TODO: Use proper jump dynamics
+	print(velocity.y)
+	if Input.is_action_just_pressed(\"ui_up\") and velocity.y == 0:
+		velocity.y = JUMP_FORCE
+	
+	velocity.y += GRAVITY * delta
+
+	if anim:
+		if input_dir != 0:
+			anim.animation = \"Correr\"
+			anim.flip_h = input_dir < 0
+		else:
+			anim.animation = \"Parado\"
+
+	move_and_slide()
+
+func add_collectible():
+	llamas += 1
+	print(\"I got it!\")
+	update_ui()
+	
+func update_ui():
+	if counter_label:
+		counter_label.text = str(llamas)
+	print(\"Collectibles: \", llamas)
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group(\"Llama\"):
+		print(\"collected flame\")
+"
+
 [node name="Main" type="Node2D"]
-
-[node name="Jugador" type="CharacterBody2D" parent="."]
-position = Vector2(48, 427)
-up_direction = Vector2(0, 1)
-script = ExtResource("1_c01mt")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Jugador"]
-scale = Vector2(1.4695313, 1.4695313)
-sprite_frames = SubResource("SpriteFrames_272bh")
-animation = &"Parado"
-autoplay = "Parado"
-frame_progress = 0.7602112
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
-position = Vector2(-1.375, -3)
-shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="Suelo" type="StaticBody2D" parent="."]
 
@@ -229,7 +214,7 @@ rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_sugp2")
 
 [node name="Borde_der" type="CollisionShape2D" parent="Suelo"]
-position = Vector2(1200, 256)
+position = Vector2(1152, 256)
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_sugp2")
 
@@ -257,11 +242,11 @@ animation = &"icono_llama"
 
 [node name="Llamas_texto" type="Label" parent="UI/Llamas_Contador"]
 layout_mode = 2
-text = "Llamas:"
+text = "Flames:"
+label_settings = SubResource("LabelSettings_c01mt")
 
 [node name="Llamas_Numero" type="Label" parent="UI/Llamas_Contador"]
 layout_mode = 2
-text = "0"
 
 [node name="Objetos" type="Node2D" parent="."]
 position = Vector2(0, 1)
@@ -277,3 +262,12 @@ scale = Vector2(2, 2)
 [node name="Llama3" parent="." instance=ExtResource("7_nxtc6")]
 position = Vector2(454, 386)
 scale = Vector2(2, 2)
+
+[node name="Llama4" parent="." instance=ExtResource("7_nxtc6")]
+position = Vector2(587, 392)
+scale = Vector2(2, 2)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_vcsgt")]
+position = Vector2(37, 438)
+scale = Vector2(1.5, 1.5)
+script = SubResource("GDScript_vcsgt")

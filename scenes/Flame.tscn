@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://3q1ym1ps6hvn"]
+[gd_scene load_steps=13 format=3 uid="uid://3q1ym1ps6hvn"]
 
 [ext_resource type="Texture2D" uid="uid://cmkc30nu4xafk" path="res://assets/llamas.png" id="1_47vdv"]
+[ext_resource type="AudioStream" uid="uid://bfkspv0nvwnfk" path="res://assets/audio/fire-sound-effects-224089.mp3" id="2_uaa8i"]
 
 [sub_resource type="GDScript" id="GDScript_1pg6c"]
 script/source = "extends Area2D
@@ -8,7 +9,7 @@ script/source = "extends Area2D
 @onready var anim = $AnimatedSprite2D
 
 func _ready():
-	body_entered.connect(_on_body_entered)
+	#body_entered.connect(_on_body_entered)
 	if anim:
 		anim.play(\"Llama\")
 
@@ -19,7 +20,7 @@ func _on_body_entered(body):
 		pickup_effect()
 
 func pickup_effect():
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred(\"disabled\", true)
 
 	var tween = create_tween()
 	tween.set_parallel(true)
@@ -100,5 +101,6 @@ animation = &"Llama"
 shape = SubResource("CircleShape2D_61c27")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_uaa8i")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
