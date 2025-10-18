@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cto7b1gw5f05v"
-path="res://.godot/imported/using_tilesets_kenney_abstract_platformer_tile_sheet.webp-c95d2bf9c78469211cc416a193dbd9b4.ctex"
+uid="uid://d207j1dd0htjk"
+path="res://.godot/imported/suelo_hierba.png-f7622497705b96d17a4fe3985736905c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/using_tilesets_kenney_abstract_platformer_tile_sheet.webp"
-dest_files=["res://.godot/imported/using_tilesets_kenney_abstract_platformer_tile_sheet.webp-c95d2bf9c78469211cc416a193dbd9b4.ctex"]
+source_file="res://assets/suelo_hierba.png"
+dest_files=["res://.godot/imported/suelo_hierba.png-f7622497705b96d17a4fe3985736905c.ctex"]
 
 [params]
 
