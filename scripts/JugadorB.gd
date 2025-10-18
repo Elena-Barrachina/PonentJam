@@ -28,7 +28,7 @@ func _physics_process(delta):
 
 	# Animation
 	if input_dir != 0:
-		anim.animation = "correr"
+		anim.animation = "Correr"
 		anim.flip_h = input_dir < 0  # flip if moving left
 	else:
-		anim.animation = "parado"
+		anim.animation = "Parado"

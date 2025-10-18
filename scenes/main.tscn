@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=4 uid="uid://cdup8uv36pcnv"]
+[gd_scene load_steps=22 format=4 uid="uid://cdup8uv36pcnv"]
 
 [ext_resource type="Texture2D" uid="uid://cto7b1gw5f05v" path="res://assets/using_tilesets_kenney_abstract_platformer_tile_sheet.webp" id="1_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://bcp86jy3ldrnl" path="res://assets/idle-32B.png" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://bo4b3cokgmqbp" path="res://scenes/jugador.gd" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://b1156cc5u35fl" path="res://assets/idle.png" id="5_85g3d"]
 
@@ -3305,21 +3306,21 @@ sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 sources/1 = SubResource("TileSetAtlasSource_1bvp3")
 sources/2 = SubResource("TileSetAtlasSource_lquwl")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyhfs"]
+atlas = ExtResource("3_jyhfs")
+region = Rect2(60, 0, 30, 50)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbgi4"]
-atlas = ExtResource("5_85g3d")
-region = Rect2(0, 0, 32, 32)
+atlas = ExtResource("3_jyhfs")
+region = Rect2(90, 0, 30, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tefeu"]
-atlas = ExtResource("5_85g3d")
-region = Rect2(32, 0, 32, 32)
+atlas = ExtResource("3_jyhfs")
+region = Rect2(0, 0, 30, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6xl0"]
-atlas = ExtResource("5_85g3d")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
-atlas = ExtResource("5_85g3d")
-region = Rect2(32, 32, 32, 32)
+atlas = ExtResource("3_jyhfs")
+region = Rect2(30, 0, 30, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
 atlas = ExtResource("5_85g3d")
@@ -3341,6 +3342,9 @@ region = Rect2(32, 32, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jyhfs")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tbgi4")
 }, {
 "duration": 1.0,
@@ -3348,9 +3352,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o6xl0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tipki")
 }],
 "loop": true,
 "name": &"Correr",
@@ -3375,14 +3376,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(45, 47)
+size = Vector2(45, 65)
 
 [node name="Main" type="Node2D"]
 
 [node name="Suelo" type="StaticBody2D" parent="."]
 
 [node name="Limite" type="CollisionShape2D" parent="Suelo"]
-position = Vector2(615, 465)
+position = Vector2(615, 470)
 shape = SubResource("WorldBoundaryShape2D_sugp2")
 
 [node name="Textura" type="TileMapLayer" parent="Suelo"]
@@ -3410,10 +3411,11 @@ position = Vector2(123.5125, 59.5125)
 scale = Vector2(1.4695313, 1.4695313)
 sprite_frames = SubResource("SpriteFrames_272bh")
 animation = &"Correr"
-frame_progress = 0.10314994
+autoplay = "Parado"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
-position = Vector2(122.525, 59.524982)
+visible = false
+position = Vector2(122.525, 60.5)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="Objetos" type="Node2D" parent="."]
