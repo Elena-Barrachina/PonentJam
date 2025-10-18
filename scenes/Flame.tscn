@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://3q1ym1ps6hvn"]
+
+[ext_resource type="Texture2D" uid="uid://cmkc30nu4xafk" path="res://assets/llamas.png" id="1_47vdv"]
+
+[sub_resource type="GDScript" id="GDScript_1pg6c"]
+script/source = "extends Area2D
+
+func _ready():
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body):
+	if body.is_in_group(\"player\"):
+		body.add_collectible()
+		queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga2k0"]
+atlas = ExtResource("1_47vdv")
+region = Rect2(0, 0, 9, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gns2"]
+atlas = ExtResource("1_47vdv")
+region = Rect2(9, 0, 9, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rapul"]
+atlas = ExtResource("1_47vdv")
+region = Rect2(18, 0, 9, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh687"]
+atlas = ExtResource("1_47vdv")
+region = Rect2(27, 0, 9, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma10x"]
+atlas = ExtResource("1_47vdv")
+region = Rect2(36, 0, 9, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuck5"]
+atlas = ExtResource("1_47vdv")
+region = Rect2(45, 0, 9, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72l5o"]
+atlas = ExtResource("1_47vdv")
+region = Rect2(54, 0, 9, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_udoxq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga2k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gns2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rapul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh687")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma10x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuck5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72l5o")
+}],
+"loop": true,
+"name": &"Llama",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61c27"]
+radius = 5.0
+
+[node name="Llama" type="Area2D"]
+script = SubResource("GDScript_1pg6c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_udoxq")
+animation = &"Llama"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_61c27")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
