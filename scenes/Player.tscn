@@ -75,9 +75,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vio6t"]
-size = Vector2(29, 44)
+size = Vector2(17, 45)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_jt5h6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -86,7 +88,7 @@ animation = &"Parado"
 autoplay = "Parado"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
+position = Vector2(-6.5, -0.5)
 shape = SubResource("RectangleShape2D_vio6t")
 
 [node name="pasos_audio" type="AudioStreamPlayer2D" parent="."]

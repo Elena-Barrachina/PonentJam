@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm6h2wi3t4p8d"]
+
+[ext_resource type="Texture2D" uid="uid://cd2f8n1lctvof" path="res://assets/pebetero.png" id="1_7jjcd"]
+[ext_resource type="Script" uid="uid://cwd4jwabcjgja" path="res://scripts/pebetero.gd" id="1_rm2nr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jjcd"]
+size = Vector2(32, 42.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jjcd"]
+atlas = ExtResource("1_7jjcd")
+region = Rect2(1, 5, 32, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm2nr"]
+atlas = ExtResource("1_7jjcd")
+region = Rect2(32, 5, 32, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fq52"]
+atlas = ExtResource("1_7jjcd")
+region = Rect2(64, 5, 32, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52dxw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jjcd")
+}],
+"loop": true,
+"name": &"apagado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm2nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fq52")
+}],
+"loop": true,
+"name": &"encendido",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_rm2nr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.75)
+shape = SubResource("RectangleShape2D_7jjcd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_52dxw")
+animation = &"encendido"
+frame_progress = 0.35657063
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
