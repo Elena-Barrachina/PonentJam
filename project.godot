@@ -15,10 +15,16 @@ run/main_scene="uid://cdup8uv36pcnv"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/mode=2
+
 [global_group]
 
 flames=""
 flames_num=""
+flames_ui=""
+ui_root=""
 
 [input]
 
