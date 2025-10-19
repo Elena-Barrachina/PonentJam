@@ -75,15 +75,15 @@ sources/0 = SubResource("TileSetAtlasSource_tefeu")
 [node name="UI" parent="." instance=ExtResource("3_vcsgt")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -11.0
 offset_right = 579.0
 offset_bottom = 468.0
 texture = ExtResource("6_c01mt")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 offset_left = 579.0
-offset_right = 1169.0
-offset_bottom = 464.0
+
+offset_right = 1153.0
+offset_bottom = 468.0
 texture = ExtResource("6_c01mt")
 flip_h = true
 

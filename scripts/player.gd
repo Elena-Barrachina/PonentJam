@@ -50,6 +50,10 @@ func add_flame():
 	contador += 1
 	update_ui()
 	
+	var ui = get_tree().get_first_node_in_group("ui_root")
+	if ui:
+		ui.pop_flame_effect()
+	
 func update_ui():
 	if flames_num:
 		flames_num.text = str(contador)
