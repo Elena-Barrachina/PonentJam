@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://d0l8qgped5xr5"]
 
-[ext_resource type="Script" uid="uid://bo4b3cokgmqbp" path="res://scripts/jugador.gd" id="1_jt5h6"]
+[ext_resource type="Script" uid="uid://bo4b3cokgmqbp" path="res://scripts/player.gd" id="1_jt5h6"]
 [ext_resource type="Texture2D" uid="uid://bgylsuuitlfpw" path="res://assets/juanen_correr.png" id="1_vio6t"]
 [ext_resource type="Texture2D" uid="uid://djdlmokgm7clg" path="res://assets/juanen_parado.png" id="2_h28ku"]
 [ext_resource type="AudioStream" uid="uid://duhpsmher38aq" path="res://assets/audio/footsteps-dirt-gravel-6823.mp3" id="4_mk3m0"]
@@ -54,7 +54,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Correr",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -91,7 +91,4 @@ shape = SubResource("RectangleShape2D_vio6t")
 
 [node name="pasos_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_mk3m0")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -20)
-zoom = Vector2(3, 3)
+pitch_scale = 2.0

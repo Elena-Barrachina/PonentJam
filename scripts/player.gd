@@ -6,12 +6,11 @@ const GRAVITY = 1000
 
 @onready var anim = $AnimatedSprite2D
 @onready var pasos = $pasos_audio
-@onready var counter_label = get_tree().get_first_node_in_group("ui_counter")
-
-var llamas = 0
+@onready var flames_num = get_tree().get_first_node_in_group("flames_num")
 
 func _ready():
-	add_to_group("player")  # This allows collectibles to recognize this as the player
+	add_to_group("player")
+	update_ui()
 
 func _physics_process(delta):
 	var input_dir = 0
@@ -31,7 +30,6 @@ func _physics_process(delta):
 			pasos.stop()
 
 	# TODO: Use proper jump dynamics
-	print(velocity.y)
 	if Input.is_action_just_pressed("ui_up") and velocity.y == 0:
 		velocity.y = JUMP_FORCE
 	
@@ -46,16 +44,15 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func add_collectible():
-	llamas += 1
-	print("I got it!")
+func add_flame():
+	flames_num += 1
 	update_ui()
 	
 func update_ui():
-	if counter_label:
-		counter_label.text = str(llamas)
-	print("Collectibles: ", llamas)
+	if flames_num:
+		#flames_num.text = str(flames_num)
+		flames_num.text = 999
 
 func _on_Area2D_area_entered(area):
-	if area.is_in_group("Llama"):
-		print("collected flame")
+	if area.is_in_group("flame"):
+		print("Has recollit la flama")

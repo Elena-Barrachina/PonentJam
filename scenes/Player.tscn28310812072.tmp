@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://d0l8qgped5xr5"]
+
+[ext_resource type="Script" uid="uid://bo4b3cokgmqbp" path="res://scripts/player.gd" id="1_jt5h6"]
+[ext_resource type="Texture2D" uid="uid://bgylsuuitlfpw" path="res://assets/juanen_correr.png" id="1_vio6t"]
+[ext_resource type="Texture2D" uid="uid://djdlmokgm7clg" path="res://assets/juanen_parado.png" id="2_h28ku"]
+[ext_resource type="AudioStream" uid="uid://duhpsmher38aq" path="res://assets/audio/footsteps-dirt-gravel-6823.mp3" id="4_mk3m0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vio6t"]
+atlas = ExtResource("1_vio6t")
+region = Rect2(0, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h28ku"]
+atlas = ExtResource("1_vio6t")
+region = Rect2(30, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt5h6"]
+atlas = ExtResource("1_vio6t")
+region = Rect2(60, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk3m0"]
+atlas = ExtResource("1_vio6t")
+region = Rect2(90, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f8o5"]
+atlas = ExtResource("2_h28ku")
+region = Rect2(0, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a325k"]
+atlas = ExtResource("2_h28ku")
+region = Rect2(30, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55d87"]
+atlas = ExtResource("2_h28ku")
+region = Rect2(60, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrh68"]
+atlas = ExtResource("2_h28ku")
+region = Rect2(90, 0, 30, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1jm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vio6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h28ku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt5h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk3m0")
+}],
+"loop": true,
+"name": &"Correr",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f8o5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a325k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55d87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrh68")
+}],
+"loop": true,
+"name": &"Parado",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vio6t"]
+size = Vector2(29, 44)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_jt5h6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u1jm8")
+animation = &"Parado"
+autoplay = "Parado"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_vio6t")
+
+[node name="pasos_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mk3m0")
+pitch_scale = 2.0
