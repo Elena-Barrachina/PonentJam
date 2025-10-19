@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://broom2asavuhd"]
+
+[ext_resource type="Texture2D" uid="uid://b2j6nnw3k8fu4" path="res://assets/backgrounds/fondo_hielo.png" id="1_wedq0"]
+
+[node name="Node2D" type="Sprite2D" groups=["backgrounds"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 242)
+scale = Vector2(17.96875, 7.59375)
+texture = ExtResource("1_wedq0")

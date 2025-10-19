@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cj85jkcsbfaeh" path="res://scripts/background_manager.gd" id="1_lhr70"]
 [ext_resource type="PackedScene" uid="uid://c6431lqk04pr2" path="res://scenes/Warm_Background.tscn" id="2_jlsqs"]
-[ext_resource type="Shader" uid="uid://u5jq6qdyc055" path="res://shaders/RippleFade.gdshader" id="2_q8u5g"]
+[ext_resource type="Shader" uid="uid://u5jq6qdyc055" path="res://shaders/Cold_Background.gdshader" id="2_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://c5oqjf2sb3lyl" path="res://scenes/UI.tscn" id="3_vcsgt"]
 [ext_resource type="Texture2D" uid="uid://do5djlftrf51t" path="res://assets/suelo_hielo.png" id="4_q8u5g"]
 [ext_resource type="Texture2D" uid="uid://d207j1dd0htjk" path="res://assets/suelo_hierba.png" id="5_lhr70"]
@@ -85,11 +85,11 @@ sources/0 = SubResource("TileSetAtlasSource_tefeu")
 [node name="BackgroundManager" type="Node2D" parent="."]
 script = ExtResource("1_lhr70")
 
-[node name="WarmBackground" parent="BackgroundManager" instance=ExtResource("2_jlsqs")]
-visible = false
-
 [node name="ColdBackground" parent="BackgroundManager" instance=ExtResource("7_q8u5g")]
 material = SubResource("ShaderMaterial_lhr70")
+
+[node name="WarmBackground" parent="BackgroundManager" instance=ExtResource("2_jlsqs")]
+visible = false
 
 [node name="Suelo" type="StaticBody2D" parent="."]
 

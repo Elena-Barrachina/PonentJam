@@ -4,15 +4,6 @@
 [ext_resource type="Script" uid="uid://daybg3q00qapt" path="res://scripts/ui.gd" id="1_ro3t7"]
 
 [sub_resource type="GDScript" id="GDScript_ro3t7"]
-script/source = "extends ColorRect
-
-@onready var container = $Flames_info  # adjust path
-
-func _process(_delta):
-	if container:
-		container.rect_size = container.rect_size + Vector2(10, 10)  # optional padding
-		container.rect_position = container.rect_position - Vector2(5, 5)
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ro3t7"]
 atlas = ExtResource("1_dj8aq")

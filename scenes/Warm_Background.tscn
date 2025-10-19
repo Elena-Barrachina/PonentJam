@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6431lqk04pr2"]
+
+[ext_resource type="Texture2D" uid="uid://bulnxigp2ruje" path="res://assets/backgrounds/llamas_vivas.png" id="1_154tp"]
+
+[node name="Node2D" type="Sprite2D" groups=["backgrounds"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575, 242)
+scale = Vector2(18, 7.5625)
+texture = ExtResource("1_154tp")
