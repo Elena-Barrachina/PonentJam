@@ -61,25 +61,24 @@ animations = [{
 
 [node name="Ui" type="CanvasLayer"]
 
-[node name="Flama_info" type="HBoxContainer" parent="."]
+[node name="Flames_info" type="HBoxContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Flama_info"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Flames_info"]
 position = Vector2(14, 20)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ukj8e")
 animation = &"flama"
-frame = 3
-frame_progress = 0.2933187
+frame_progress = 0.07557459
 
-[node name="Flama_text" type="Label" parent="Flama_info"]
+[node name="Flames_text" type="Label" parent="Flames_info"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "    Flames:"
 
-[node name="Flama_num" type="Label" parent="Flama_info" groups=["flames_num"]]
+[node name="Flames_num" type="Label" parent="Flames_info" groups=["flames_num"]]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32

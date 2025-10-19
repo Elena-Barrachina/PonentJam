@@ -6,7 +6,9 @@ const GRAVITY = 1000
 
 @onready var anim = $AnimatedSprite2D
 @onready var pasos = $pasos_audio
-@onready var flames_num = get_tree().get_first_node_in_group("flames_num")
+@onready var flames_num := get_tree().get_first_node_in_group("flames_num")
+
+var contador := 0
 
 func _ready():
 	add_to_group("player")
@@ -29,9 +31,9 @@ func _physics_process(delta):
 		if pasos.playing:
 			pasos.stop()
 
-	# TODO: Use proper jump dynamics
 	if Input.is_action_just_pressed("ui_up") and velocity.y == 0:
 		velocity.y = JUMP_FORCE
+		# TODO: Use proper jump dynamics
 	
 	velocity.y += GRAVITY * delta
 
@@ -45,14 +47,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 func add_flame():
-	flames_num += 1
+	contador += 1
 	update_ui()
 	
 func update_ui():
 	if flames_num:
-		#flames_num.text = str(flames_num)
-		flames_num.text = 999
+		flames_num.text = str(contador)
 
 func _on_Area2D_area_entered(area):
-	if area.is_in_group("flame"):
+	if area.is_in_group("flames"):
 		print("Has recollit la flama")

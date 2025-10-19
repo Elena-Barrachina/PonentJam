@@ -15,7 +15,7 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group(\"player\"):
-		body.add_collectible()
+		body.add_flame()
 		$AudioStreamPlayer2D.play()
 		pickup_effect()
 
@@ -24,9 +24,9 @@ func pickup_effect():
 
 	var tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(anim, \"rotation_degrees\", anim.rotation_degrees + 720, 0.6)
-	tween.tween_property(self, \"position:y\", position.y - 60, 0.6)
-	tween.tween_property(anim, \"modulate:a\", 0.0, 0.6)
+	tween.tween_property(anim, \"rotation_degrees\", anim.rotation_degrees + 900, 0.6)
+	tween.tween_property(self, \"position:y\", position.y - 100, 0.6)
+	tween.tween_property(anim, \"modulate:a\", 0.0, 0.8)
 	tween.finished.connect(queue_free)
 "
 
@@ -90,7 +90,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_61c27"]
 radius = 5.0
 
-[node name="Llama" type="Area2D"]
+[node name="Llama" type="Area2D" groups=["flames"]]
 script = SubResource("GDScript_1pg6c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

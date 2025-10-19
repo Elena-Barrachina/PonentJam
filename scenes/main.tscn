@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cdup8uv36pcnv"]
+[gd_scene load_steps=12 format=4 uid="uid://cdup8uv36pcnv"]
 
 [ext_resource type="PackedScene" uid="uid://c5oqjf2sb3lyl" path="res://scenes/UI.tscn" id="3_vcsgt"]
 [ext_resource type="Texture2D" uid="uid://do5djlftrf51t" path="res://assets/suelo_hielo.png" id="4_q8u5g"]
@@ -69,73 +69,9 @@ texture = ExtResource("5_lhr70")
 [sub_resource type="TileSet" id="TileSet_o6xl0"]
 sources/0 = SubResource("TileSetAtlasSource_tefeu")
 
-[sub_resource type="GDScript" id="GDScript_vcsgt"]
-script/source = "extends CharacterBody2D
-
-const SPEED = 200
-const JUMP_FORCE = -400
-const GRAVITY = 1000
-
-@onready var anim = $AnimatedSprite2D
-@onready var pasos = $pasos_audio
-@onready var counter_label = get_tree().get_first_node_in_group(\"ui_counter\")
-
-var llamas = 0
-
-func _ready():
-	add_to_group(\"player\")  # This allows collectibles to recognize this as the player
-
-func _physics_process(delta):
-	var input_dir = 0
-
-	if Input.is_action_pressed(\"ui_right\"):
-		input_dir += 1
-	if Input.is_action_pressed(\"ui_left\"):
-		input_dir -= 1
-
-	velocity.x = input_dir * SPEED
-
-	if input_dir != 0:
-		if not pasos.playing:
-			pasos.play()
-	else:
-		if pasos.playing:
-			pasos.stop()
-
-	# TODO: Use proper jump dynamics
-	print(velocity.y)
-	if Input.is_action_just_pressed(\"ui_up\") and velocity.y == 0:
-		velocity.y = JUMP_FORCE
-	
-	velocity.y += GRAVITY * delta
-
-	if anim:
-		if input_dir != 0:
-			anim.animation = \"Correr\"
-			anim.flip_h = input_dir < 0
-		else:
-			anim.animation = \"Parado\"
-
-	move_and_slide()
-
-func add_collectible():
-	llamas += 1
-	print(\"I got it!\")
-	update_ui()
-	
-func update_ui():
-	if counter_label:
-		counter_label.text = str(llamas)
-	print(\"Collectibles: \", llamas)
-
-func _on_Area2D_area_entered(area):
-	if area.is_in_group(\"Llama\"):
-		print(\"collected flame\")
-"
-
 [node name="Main" type="Node2D"]
 
-[node name="Ui" parent="." groups=["flames_num"] instance=ExtResource("3_vcsgt")]
+[node name="UI" parent="." instance=ExtResource("3_vcsgt")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -11.0
@@ -194,11 +130,10 @@ scale = Vector2(2, 2)
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_vcsgt")]
 position = Vector2(37, 438)
 scale = Vector2(1.5, 1.5)
-script = SubResource("GDScript_vcsgt")
 
 [node name="Camera2D2" type="Camera2D" parent="CharacterBody2D"]
-offset = Vector2(0, -15)
-zoom = Vector2(2.5, 2.5)
+offset = Vector2(0, -20)
+zoom = Vector2(2.25, 2.25)
 limit_left = 0
 limit_top = 0
 limit_right = 1152
