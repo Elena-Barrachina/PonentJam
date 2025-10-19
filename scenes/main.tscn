@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cdup8uv36pcnv"]
+[gd_scene load_steps=13 format=4 uid="uid://cdup8uv36pcnv"]
 
 [ext_resource type="PackedScene" uid="uid://c5oqjf2sb3lyl" path="res://scenes/UI.tscn" id="3_vcsgt"]
 [ext_resource type="Texture2D" uid="uid://do5djlftrf51t" path="res://assets/suelo_hielo.png" id="4_q8u5g"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d0l8qgped5xr5" path="res://scenes/Player.tscn" id="5_vcsgt"]
 [ext_resource type="Texture2D" uid="uid://b2j6nnw3k8fu4" path="res://assets/backgrounds/fondo_hielo.png" id="6_c01mt"]
 [ext_resource type="PackedScene" uid="uid://3q1ym1ps6hvn" path="res://scenes/Flame.tscn" id="7_nxtc6"]
+[ext_resource type="PackedScene" uid="uid://cm6h2wi3t4p8d" path="res://scenes/Pebetero.tscn" id="7_o6xl0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 
@@ -80,6 +81,7 @@ texture = ExtResource("6_c01mt")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 offset_left = 579.0
+
 offset_right = 1153.0
 offset_bottom = 468.0
 texture = ExtResource("6_c01mt")
@@ -125,6 +127,9 @@ scale = Vector2(2, 2)
 [node name="Llama4" parent="." instance=ExtResource("7_nxtc6")]
 position = Vector2(587, 392)
 scale = Vector2(2, 2)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("7_o6xl0")]
+position = Vector2(809, 443)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("5_vcsgt")]
 position = Vector2(37, 438)
